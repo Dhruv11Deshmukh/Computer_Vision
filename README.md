@@ -14,3 +14,25 @@ Pipeline
 5. Match against stored features using Euclidean distance
 6. Recognize users or label as unknown
 7. Trigger unlock state when a valid match is found
+
+
+Object Detection
+
+This project performs automatic detection and classification of pens and pencils from an input image using classical computer vision. The system is orientation independent meaning that objects can appear rotated in any direction. The classification is done using a combination of contour geometry, aspect ratio analysis, solidity filtering, and dominant color extraction in HSV space. The output is an annotated image showing rotated bounding boxes and predicted labels for each detected object.
+
+Processing Pipeline
+
+1. Image Preprocessing
+The image is resized if needed and converted to grayscale. Gaussian blurring and adaptive thresholding are applied to handle noise and uneven lighting. Morphological closing removes small gaps to create solid object regions.
+
+2. Contour Extraction
+External contours are detected from the thresholded mask. Small contours are filtered out to avoid noise. Each remaining contour is processed using a minimum area bounding rectangle which provides orientation, width, height, and angle.
+
+3. Feature Extraction
+The long and short sides of the rotated rectangle are used to compute the aspect ratio. The region inside the rotated rectangle is extracted and converted to HSV to compute the dominant color using k means clustering.
+
+4. Object Classification
+Classification is rule based using predefined aspect ratio ranges for pens and pencils. When the aspect ratio is ambiguous, the system falls back to color based heuristics using hue and saturation characteristics typical of wooden pencils and plastic pens.
+
+5. Annotation and Output
+Rotated bounding boxes are drawn on the original image along with predicted labels. A summary showing the count of pens pencils and unknown objects is added. The final annotated image is saved and can optionally be displayed.
