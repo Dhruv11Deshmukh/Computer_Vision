@@ -74,7 +74,7 @@ while not registered:
         known_feats.append(hist)
         with open(KNOWN_FILE, "wb") as f:
             pickle.dump({"names": known_names, "features": [f.tolist() for f in known_feats]}, f)
-        print(f"✅ Registered {user_name}")
+        print(f"Registered {user_name}")
         registered = True
     elif key == ord('q'):
         print("Registration cancelled")
@@ -165,3 +165,4 @@ print("\n===== Session Feature Summary =====")
 for i, f in enumerate(extracted_features[-5:]):
     print(f"[{i+1}] {f['time']} | Face#{f['face_id']} | {f['name']} | Dist={f['distance']:.3f} | Top bins: {f['top_features']}")
 print("===================================")
+
