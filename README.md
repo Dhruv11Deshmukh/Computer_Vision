@@ -16,6 +16,8 @@ Pipeline
 7. Trigger unlock state when a valid match is found
 
 
+
+
 Object Detection
 
 This project performs automatic detection and classification of pens and pencils from an input image using classical computer vision. The system is orientation independent meaning that objects can appear rotated in any direction. The classification is done using a combination of contour geometry, aspect ratio analysis, solidity filtering, and dominant color extraction in HSV space. The output is an annotated image showing rotated bounding boxes and predicted labels for each detected object.
